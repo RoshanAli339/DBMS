@@ -33,10 +33,13 @@ SELECT course_id FROM teaches
 WHERE (semester LIKE 'Fall' AND year=2009) OR (semester LIKE 'Spring' AND year=2010);
 
 /* Find all courses taught in the Fall 2009 semester but not in the Spring 2010 semester. */
-SELECT course_id FROM teaches WHERE (semester LIKE 'Fall' AND year=2009) AND NOT(semester LIKE 'Spring' AND year=2010);
+(SELECT course_id FROM teaches WHERE semester LIKE 'Fall' AND year=2009) 
+MINUS 
+(SELECT course_id FROM taches WHERE semester LIKE 'Spring' AND year=2010);
 
 /* Find the names of all students who have taken any Comp. Sci. course ever. (there should be no duplicate names) */
 SELECT DISTINCT s.name FROM student s, takes t, course c 
 WHERE s.id=t.id AND t.course_id=c.course_id AND c.dept_name LIKE 'Comp. Sci.';
 
 /* . Display the IDs of all instructors who have never taught a course. (Don’t write nested query) */
+(SELECT id FROM instructor) MINUS (SELECT id FROM teaches);
