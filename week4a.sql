@@ -1,7 +1,7 @@
 /* Write SQL Select Statements using Aggregate Functions, Group By and Having clauses for the following queries that retrieve data from university database */
 
 /* 1.	Find the maximum and average capacity of buildings in the university. */
-SELECT MAX(capacity) AS Maximum, AVG(capacity) AS AVERAGE FROM clasroom;
+SELECT MAX(capacity) AS Maximum, AVG(capacity) AS AVERAGE FROM classroom;
 
 /* 2.	Display the least budget of the departments. */
 SELECT MIN(budget) AS "Least Budget" FROM department;
@@ -25,12 +25,20 @@ FROM instructor i, teaches t
 WHERE i.id=t.id AND t.semester='Spring' AND t.year=2010
 GROUP BY dept_name;
 
-/* 8.	Find the department name and average salary of the department for only those departments where the average salary of the instructors is more than $42,000 */
+/* 8.	Find the department name and average salary of the department for only those departments where 
+the average salary of the instructors is more than $42,000 */
 SELECT dept_name, AVG(salary) FROM instructor 
 GROUP BY dept_name
 HAVING AVG(salary)>42000;
 
-/* 9.	For each course section offered in 2009, find the average total credits (tot_cred) of all students enrolled in the section, if the section had at least 2 students*/
+/* 9.	For each course section offered in 2009, find the average total credits (tot_cred) of all students enrolled
+ in the section, if the section had at least 2 students*/
+SELECT sec.course_id, sec.sec_id, AVG(stu.tot_cred) AS avg_tot_cred
+FROM section sec, student stu, takes t
+WHERE sec.course_id = t.course_id AND sec.sec_id = t.sec_id AND sec.year = t.year
+AND t.ID = stu.ID AND sec.year = 2009
+GROUP BY sec.course_id, sec.sec_id, sec.year
+HAVING COUNT(t.ID) >= 2;
 
 /* 10.	For each department, find the maximum salary of instructors in that department. You may assume that every department has at least one instructor */
 SELECT dept_name, MAX(salary) AS MAX_SALARY
