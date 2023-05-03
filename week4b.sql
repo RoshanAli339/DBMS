@@ -45,7 +45,7 @@ GROUP BY course_id HAVING COUNT(course_id) <= 1;
 
 /* 9. Find all courses that were offered at least twice in 2009 */
 SELECT DISTINCT course_id FROM teaches WHERE year=2009 
-GROUP BY course_id HAVING COUNT(course_id) <= 2;
+GROUP BY course_id HAVING COUNT(course_id) >= 2;
 
 /* 10. Fina the average instructors' salaries of those departments where the average salary is greater
 than $42,000 */
@@ -61,3 +61,17 @@ SELECT i.id FROM instructor i WHERE NOT EXISTS(
 );
 
 /* 13. Find the IDs and Names of all students who have not taken any course offering before Spring 2009 */
+(SELECT id, name FROM student)
+MINUS
+(SELECT s.id, s.name FROM student s, takes t WHERE s.id=t.id AND t.year<2009);
+
+/* 14.	Find the lowest, across all departments, of the per-department maximum salary computed */
+SELECT MIN(MAXSAL) FROM(
+SELECT dept_name, MAX(salary) AS MAXSAL FROM instructor GROUP BY dept_name);
+
+/* 15.	Display the IDs and names of the instructors who have taught all Comp. Sci. courses */
+SELECT i.id, i.name FROM instructor i 
+WHERE NOT EXISTS (
+(SELECT course_id FROM course WHERE dept_name='Comp. Sci.')
+MINUS
+(SELECT t.course_id FROM teaches t WHERE i.id=t.id));
