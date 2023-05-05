@@ -61,3 +61,21 @@ SELECT i.id FROM instructor i WHERE NOT EXISTS(
 );
 
 /* 13. Find the IDs and Names of all students who have not taken any course offering before Spring 2009 */
+(SELECT id, name FROM student)
+MINUS
+(SELECT s.id, s.name FROM student s, takes t
+WHERE t.id=s.id AND t.year<2009);
+
+/* 14. Find the lowest, across all departments, of the per-department maximum salary computed. */
+SELECT MAX(maxsal) FROM(
+    SELECT dept_name, MAX(salary) as maxsal FROM instructor
+    GROUP BY dept_name
+);
+
+/* 15. Display the IDs and names of the instructors who have taught all Comp. Sci. courses */
+SELECT i.id, i.name FROM instructor i
+WHERE NOT EXISTS(
+    (SELECT course_id FROM course WHERE dept_name='Comp. Sci.')
+    MINUS
+    (SELECT t.course_id FROM teaches t WHERE t.id=i.id)
+);
