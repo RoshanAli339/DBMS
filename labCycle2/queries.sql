@@ -15,7 +15,7 @@ SELECT dname FROM dept WHERE deptno NOT IN (SELECT DISTINCT deptno FROM emp);
 1980 and 1990 and 2nd week of every month */
 SELECT * FROM emp 
 WHERE TO_CHAR(hiredate, 'YYYY') BETWEEN 1980 AND 1990
-AND TO_CHAR(hiredate, 'W') = '02' ;
+AND TO_CHAR(hiredate, 'W') =02;
 
 /* 6. Write an SQL statement to convert the current date to new date picture ex: MONDAY 10th
 June 2005 10:30.00 PM */
@@ -49,6 +49,3 @@ SELECT E.ename AS EMP_NAME FROM emp E
 WHERE EXISTS (
     SELECT * FROM emp M WHERE E.mgr=M.empno AND E.HIREDATE < M.HIREDATE 
 );
-
-
-SELECT TO_CHAR(HIREDATE, 'W') AS "Week", TO_CHAR(HIREDATE, 'YYYY') as "Year", HIREDATE FROM emp;
