@@ -19,7 +19,7 @@ AND TO_CHAR(hiredate, 'W') =02;
 
 /* 6. Write an SQL statement to convert the current date to new date picture ex: MONDAY 10th
 June 2005 10:30.00 PM */
-SELECT TO_CHAR(CURRENT_DATE, 'DAY DDth MONTH HH:MI:SS AM') AS "DATE-TIME" FROM DUAL;
+SELECT TO_CHAR(SYSDATE, 'DAY DDth MONTH HH:MI:SS AM') AS "DATE-TIME" FROM DUAL;
 
 /* 7. Write a query to display all employee details who joined last Wednesday of a month and
 experience should be greater than 20 months. */
