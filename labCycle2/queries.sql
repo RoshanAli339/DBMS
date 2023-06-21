@@ -30,6 +30,22 @@ AND MONTHS_BETWEEN(SYSDATE, HIREDATE)>20;
 /* 8. Write a query to calculate the service of employees rounded to years.*/
 SELECT empno, ename, hiredate, FLOOR(MONTHS_BETWEEN(CURRENT_DATE, HIREDATE)/12) AS SERVICE_IN_YEARS FROM emp;
 
+/* 9. Write a query that will display a list of employees and their salary and the comments as follows:
+a. If the salary is more than 1500 then display “above target”
+b. If the salary is equal to 1500 then display “on the target”
+c. If the salary is less than 1500 then display “below the target”
+*/
+
+SELECT ename, sal,
+    DECODE(SIGN(SAL-1500), 1, 'above target',
+                           0, 'on the target',
+                          -1, 'below the target') AS COMMENTS
+    FROM emp;
+/*10.	Display all employee names, employee number, department names & salary grades for all employees who are working in department 30.*/
+
+SELECT e.ename, e.empno, d.dname, e.sal FROM emp e, dept d
+WHERE e.deptno=30 AND e.deptno=d.deptno;
+
 /* 11. Display the time of day */
 SELECT TO_CHAR(CURRENT_DATE, 'HH:MI:SS AM') FROM dual;
 
