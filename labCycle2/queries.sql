@@ -55,9 +55,14 @@ SELECT e.* FROM emp e WHERE e.SALARY > (
 );
 
 /* 13. Write a query to find the name of the manager and number of sub-ordinates.*/
-SELECT M.ename AS Mgr_name, (SELECT COUNT(*) FROM emp WHERE M.empno=mgr) AS "No.of subs" FROM emp M;
+SELECT e.ename, count(*) AS "No.of subs" FROM emp e, emp m
+WHERE e.empno=m.mgr GROUP by e.ename;
 
 /* 14. Write a query to find out the manager having Maximum number of sub-ordinates. */
+SELECT e.ename, COUNT(*) AS subs FROM emp e, emp m
+WHERE e.empno=m.mgr GROUP BY e.ename having count(*) in (SELECT max(count(*)) FROM emp e, emp m
+WHERE e.empno=m.mgr GROUP BY e.ename);
+
 /* 15. Write a query to find the top 3 earners */
 select sal from emp e where 3>(select count(*) from emp s where e.sal<s.sal);
 
