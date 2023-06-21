@@ -35,14 +35,13 @@ a. If the salary is more than 1500 then display “above target”
 b. If the salary is equal to 1500 then display “on the target”
 c. If the salary is less than 1500 then display “below the target”
 */
-
 SELECT ename, sal,
     DECODE(SIGN(SAL-1500), 1, 'above target',
                            0, 'on the target',
                           -1, 'below the target') AS COMMENTS
     FROM emp;
-/*10.	Display all employee names, employee number, department names & salary grades for all employees who are working in department 30.*/
 
+/*10.	Display all employee names, employee number, department names & salary grades for all employees who are working in department 30.*/
 SELECT e.ename, e.empno, d.dname, e.sal FROM emp e, dept d
 WHERE e.deptno=30 AND e.deptno=d.deptno;
 
