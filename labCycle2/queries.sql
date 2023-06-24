@@ -50,8 +50,8 @@ SELECT TO_CHAR(SYSDATE, 'HH:MI:SS AM') FROM dual;
 
 
 /* 12. Find all employees who earn a salary greater than the average salary of their departments. */
-SELECT e.* FROM emp e WHERE e.SALARY > (
-    SELECT AVG(SALARY) FROM emp WHERE deptno=e.deptno GROUP BY deptno
+SELECT e.* FROM emp e WHERE e.SAL > (
+   SELECT AVG(SAL) FROM emp WHERE deptno=e.deptno GROUP BY deptno
 );
 
 /* 13. Write a query to find the name of the manager and number of sub-ordinates.*/
