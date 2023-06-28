@@ -1,7 +1,7 @@
 CREATE TABLE Inventory(
     Product_ID      numeric(5,0),
     Product_name    varchar(20),
-    Quntity         number(3,0),
+    Quantity         number(3,0),
     PRIMARY KEY(Product_ID)
 );
 
