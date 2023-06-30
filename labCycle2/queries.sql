@@ -64,7 +64,7 @@ WHERE e.empno=m.mgr GROUP BY e.ename having count(*) in (SELECT max(count(*)) FR
 WHERE e.empno=m.mgr GROUP BY e.ename);
 
 /* 15. Write a query to find the top 3 earners */
-select sal from emp e where 3>(select count(*) from emp s where e.sal<s.sal);
+select ename, sal from emp e where 3>(select count(*) from emp s where e.sal<s.sal);
 
 /* 16. Write a query to find out the employees who have joined before their managers. */
 SELECT E.ename AS EMP_NAME FROM emp E 
