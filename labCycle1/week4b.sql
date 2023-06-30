@@ -67,7 +67,7 @@ MINUS
 WHERE t.id=s.id AND t.year<2009);
 
 /* 14. Find the lowest, across all departments, of the per-department maximum salary computed. */
-SELECT MAX(maxsal) FROM(
+SELECT MIN(maxsal) FROM(
     SELECT dept_name, MAX(salary) as maxsal FROM instructor
     GROUP BY dept_name
 );
