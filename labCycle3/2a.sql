@@ -22,19 +22,15 @@ begin
     mi := n1;
     ma := n2;
     end if;
-    for i in 2..mi loop
-    if MOD(mi, i)=0 AND MOD(ma, i)=0 then   
-    lcm := i;
-    EXIT;
-    end if;
-    end loop;
-
+ 
     for i in REVERSE 1..mi loop
     if MOD(mi, i)=0 AND MOD(ma, i)=0 then
     gcd := i;
     EXIT;
     end if;
     end loop;
+
+    lcm := (n1*n2)/gcd;
 
     INSERT INTO DEMO_TAB VALUES(n1, n2, lcm, gcd);
 end;
