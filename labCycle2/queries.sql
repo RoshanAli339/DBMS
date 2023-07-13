@@ -73,9 +73,9 @@ WHERE EXISTS (
 );
 
 /* 17. Write a query to find out the year, where most people join in the company displays the year and No. of Employees */
-SELECT TO_CHAR(HIREDATE, 'YYYY') AS HRIE_YEAR, COUNT(TO_CHAR(HIREDATE, 'YYYY')) AS NO_OF_EMP
-FROM emp GROUP BY TO_CHAR(HIREDATE,  'YYYY') HAVING COUNT(TO_CHAR(HIREDATE,  'YYYY')) IN(
-SELECT MAX(COUNT(TO_CHAR(HIREDATE,'YYYY'))) FROM emp GROUP BY TO_CHAR(HIREDATE, 'YYYY'));
+SELECT TO_CHAR(HIREDATE, 'YYYY') AS HRIE_YEAR, COUNT(empno) AS NO_OF_EMP
+FROM emp GROUP BY TO_CHAR(HIREDATE,  'YYYY') HAVING COUNT(empno) IN(
+SELECT MAX(COUNT(empno)) FROM emp GROUP BY TO_CHAR(HIREDATE, 'YYYY'));
 
 /* 18.	Write a query which will return the DAY of the week.(ie. MONDAY), for any date entered in the format: DD.MM.YY */
 SELECT TO_CHAR(TO_DATE('&dt', 'DD-MM-YYYY'), 'DAY') FROM dual;
