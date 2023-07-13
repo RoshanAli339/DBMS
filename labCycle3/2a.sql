@@ -5,6 +5,7 @@
 --     LCM     numeric(2,0),
 --     HCF     numeric(2,0)
 -- );
+
 declare
     n1 DEMO_TAB.Num1%type := &n1;
     n2 DEMO_TAB.Num2%type := &n2;
